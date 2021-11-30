@@ -31,7 +31,10 @@ class UserService(
         userId: String
     ): UserResponse {
         val user: User =
-            userRepository.findUserById(userId) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "${userId}를 찾을 수 없습니다.")
+            userRepository.findUserById(userId) ?: throw ResponseStatusException(
+                HttpStatus.NOT_FOUND,
+                "${userId}를 찾을 수 없습니다.",
+            )
         return UserResponse(
             id = user.id,
             name = user.name,
