@@ -1,6 +1,8 @@
 package sonny.kotlinspringprac.service
 
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
 import sonny.kotlinspringprac.domain.User
 import sonny.kotlinspringprac.repository.UserRepository
 import sonny.kotlinspringprac.web.req.UserRequest
@@ -28,7 +30,8 @@ class UserService(
     fun findUser(
         userId: String
     ): UserResponse {
-        val user: User = userRepository.findUserById(userId)
+        val user: User =
+            userRepository.findUserById(userId) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "${userId}를 찾을 수 없습니다.")
         return UserResponse(
             id = user.id,
             name = user.name,
