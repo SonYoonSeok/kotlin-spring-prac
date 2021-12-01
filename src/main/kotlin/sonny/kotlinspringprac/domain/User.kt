@@ -2,17 +2,28 @@ package sonny.kotlinspringprac.domain
 
 import lombok.AccessLevel
 import lombok.NoArgsConstructor
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import lombok.Setter
+import javax.persistence.*
 
 @Entity
 @Table(name = "user")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-data class User(
+class User(
     @Id
     val id: String,
+
     val name: String,
+
     val age: Long,
-    val email: String
-)
+
+    val email: String,
+
+    @OneToMany(mappedBy = "user", cascade = arrayOf(CascadeType.ALL))
+    val posts: MutableList<Post>? = null,
+) {
+    fun addPost(
+        post: Post,
+    ) {
+        posts?.add(post)
+    }
+}
