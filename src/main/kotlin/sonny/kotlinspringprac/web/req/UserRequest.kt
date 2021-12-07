@@ -1,20 +1,21 @@
 package sonny.kotlinspringprac.web.req
 
-import javax.validation.constraints.NotNull
+import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Pattern
+import javax.validation.constraints.Positive
 
 data class UserRequest(
-    @get:NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]+\$", message = "정규표현식 = {^[a-zA-Z0-9]+\$}")
+    @get:NotBlank(message = "아이디를 입력해주세요.")
+    @get:Pattern(regexp = "^[a-zA-Z0-9]+\$", message = "아이디 형식을 입력해주세요")
     val id: String,
 
-    @get:NotNull
+    @get:NotBlank(message = "이름을 입력해주세요.")
     val name: String,
 
-    @get:NotNull
-    val age: Long,
+    @get:Positive(message = "양수를 입력해주세요.")
+    val age: Int,
 
-    @get:NotNull
-    @Pattern(regexp = "^[a-z0-9_+.-]+@([a-z0-9-]+\\.)+[a-z0-9]{2,4}\$", message = "정규표현식 = {^[a-z0-9_+.-]+@([a-z0-9-]+\\.)+[a-z0-9]{2,4}\$}")
+    @get:NotBlank(message = "이메일을 입력해주세요.")
+    @get:Pattern(regexp = "^[a-z0-9_+.-]+@([a-z0-9-]+\\.)+[a-z0-9]{2,4}\$", message = "이메일 형식을 입력해주세요")
     val email: String,
 )
