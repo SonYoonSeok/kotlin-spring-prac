@@ -10,6 +10,7 @@ import sonny.kotlinspringprac.repository.UserRepository
 import sonny.kotlinspringprac.web.req.UserRequest
 import sonny.kotlinspringprac.web.res.UserResponse
 import javax.transaction.Transactional
+import javax.validation.Valid
 
 @Service
 class UserService(
@@ -38,7 +39,7 @@ class UserService(
                 HttpStatus.NOT_FOUND,
                 "${userId}를 찾을 수 없습니다.",
             )
-        val postList: List<Post>? = postRepository.findByAuthor(user.name)
+        val postList: List<Post>? = postRepository.findByAuthor(user.id)
 
         return UserResponse(
             id = user.id,
