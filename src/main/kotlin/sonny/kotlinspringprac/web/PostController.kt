@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 import sonny.kotlinspringprac.service.PostService
 import sonny.kotlinspringprac.service.UserService
 import sonny.kotlinspringprac.web.req.PostRequest
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/post")
@@ -18,7 +19,7 @@ class PostController(
 ) {
     @PostMapping("/write")
     fun post(
-        @RequestBody request: PostRequest,
+        @Valid @RequestBody request: PostRequest,
     ): ResponseEntity<Any> {
         postService.createPost(request)
         return ResponseEntity(HttpStatus.CREATED)
