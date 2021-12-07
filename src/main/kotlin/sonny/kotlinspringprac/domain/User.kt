@@ -14,16 +14,10 @@ class User(
 
     val name: String,
 
-    val age: Long,
+    val age: Int,
 
     val email: String,
 
     @OneToMany(mappedBy = "user", cascade = arrayOf(CascadeType.ALL))
     val posts: MutableList<Post>? = null,
-) {
-    fun addPost(
-        post: Post,
-    ) {
-        posts?.add(post)
-    }
-}
+)
