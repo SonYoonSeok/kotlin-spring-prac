@@ -31,6 +31,5 @@ class PostService(
                 user = user
             )
         )
-        user.addPost(post)
     }
 }
